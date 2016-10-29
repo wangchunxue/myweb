@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>王春雪</title>
+	<base href="<?php echo site_url();?>" >
+	
 	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
 	<link rel="stylesheet" href="css/swipebox.css">
@@ -127,6 +129,45 @@
 		</div>
 	</div>
   	<div></div>
+    <div id="blog">
+     <div class="wrapper">
+       <div id="blog-top">
+    	<h2>LAST WORKS</h2>
+    	<ul id="blog-list">
+    		<li><a href="#" class="active">ALL</a></li>
+    	 <?php
+    		    foreach ($category as $val) {
+    	 ?>
+    		    <li><a href="blog/check_blogs?id=<?php echo $val->cate_id; ?>"><?php echo $val->cate_name ;?></a></li>
+    		 <?php
+    		    }
+    		  ?> 
+    	</ul>
+       </div>
+    	<div id="blog-caro">
+    		<ul class="blog-works">
+    		<?php
+                foreach($blog as $aa){
+            ?><li>
+    			  <a href="#">
+    				<img src="<?php echo $aa->img ;?>" alt="">
+    				<div class="blog-desc">
+    					<span><?php echo $aa->title ;?></span>
+    					<h4><?php echo $aa->clicked ;?></h4>
+    				</div>
+    				<div class="mask">
+    					<h3 class="mask-title">PHOTO</h3>
+    					<span class="mask-btn">VIEW</span>
+    				</div>
+    		      </a>
+    			</li>
+            <?php
+                }
+    		?>
+    		</ul>
+    	</div>
+      </div>
+    </div>
   	<div class="design">
 		<div class="col-md-4 design-left">
 			<h3>This Webpage Is <span>Designed By<span></h3>
@@ -194,7 +235,18 @@
   	        }
   	      });
   	    });
-
+  	    var $a = $(".blog-works a");
+  	   	$a.hover(function(){
+  	   		$(this).children(".mask").css({
+  	   			left: 0,
+  	   			background: "rgba(39,159,124,0.6)"
+  	   		});
+  	   	},function(){
+  	   		$(this).children(".mask").css({
+  	   			left: "-100%",
+  	   			background: "rgba(39,159,124,0.6)"
+  	   		});
+		});
   		/*onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Your Name';}" */
   	});
   </script>
